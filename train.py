@@ -7,23 +7,25 @@ from src.logger import Logger
 
 
 def train():
-    BATCH_SIZE = 4
+    batch_size = 4
+    crossval_folds = 5
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger = Logger()
-    logger.log_training_loss(1, 0.5)  # Example usage of logger
-
     dataset = Fruits(file="utils/train_fruits.csv")
-    print(len(dataset))
+    kf = KFold(n_splits=crossval_folds, shuffle=True, random_state=64)
 
-    kf = KFold(n_splits=5, shuffle=True, random_state=64)
+    logger.log_training_loss(1, 0.5)  # Test logger
+    print(len(dataset))  # Test dataset
+    print(device)  # Test device
 
     for fold, (train_index, val_index) in enumerate(kf.split(dataset)):
         print("Fold: ", fold)
         train_dataset = torch.utils.data.Subset(dataset, train_index)
         val_dataset = torch.utils.data.Subset(dataset, val_index)
 
-        train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=4)
-        val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=4)
+        train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
+        val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
         for sample in train_dataloader:
             print(sample.shape)
