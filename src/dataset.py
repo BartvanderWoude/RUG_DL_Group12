@@ -25,13 +25,3 @@ class Fruits(Dataset):
         # label = self.img_labels.iloc[idx, 1]
 
         return image
-
-
-if __name__ == "__main__":
-    dataset = Fruits(file="utils/train_fruits.csv", path="../")
-    for sample in dataset:
-        print(sample.shape)
-        print(sample)
-        print(torch.max(sample))
-        print(torch.min(sample))
-        break
