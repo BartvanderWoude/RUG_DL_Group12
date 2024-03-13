@@ -1,9 +1,10 @@
 import torch
 
-from src.dataset import *
+from src.dataset import Fruits
 
-def test_dataset():
-    dataset = Fruits(file = "utils/train_fruits.csv", path = "./")
+
+def test_traindataset():
+    dataset = Fruits(file="utils/train_fruits.csv")
     sample = dataset[0]
     assert sample.shape == (3, 100, 100)
     assert len(dataset) == 67692
@@ -11,7 +12,9 @@ def test_dataset():
     assert torch.max(sample) <= 1.0
     assert torch.min(sample) >= -1.0
 
-    dataset = Fruits(file = "utils/test_fruits.csv", path = "./")
+
+def test_testdataset():
+    dataset = Fruits(file="utils/test_fruits.csv")
     sample = dataset[0]
     assert sample.shape == (3, 100, 100)
     assert len(dataset) == 22688

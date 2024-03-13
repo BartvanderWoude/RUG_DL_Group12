@@ -5,8 +5,9 @@ import pandas as pd
 from torchvision.io import read_image
 from torchvision import transforms
 
+
 class Fruits(Dataset):
-    def __init__(self, file, path = "../"):
+    def __init__(self, file, path="./"):
         self.df = pd.read_csv(path + file)
         self.path = path
         self.transform = transforms.Compose([
@@ -22,11 +23,12 @@ class Fruits(Dataset):
         image = read_image(img_path)
         image = self.transform(image)
         # label = self.img_labels.iloc[idx, 1]
-        
+
         return image
-    
+
+
 if __name__ == "__main__":
-    dataset = Fruits(file = "utils/train_fruits.csv")
+    dataset = Fruits(file="utils/train_fruits.csv", path="../")
     for sample in dataset:
         print(sample.shape)
         print(sample)
