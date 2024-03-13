@@ -8,6 +8,7 @@ def train():
     BATCH_SIZE = 4
 
     dataset = Fruits(file = "utils/train_fruits.csv", path = "./")
+    print(len(dataset))
 
     kf = KFold(n_splits = 5, shuffle = True, random_state = 64)
 
