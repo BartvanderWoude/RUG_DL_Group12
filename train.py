@@ -15,7 +15,7 @@ def train():
     dataset = Fruits(file="utils/train_fruits.csv")
     kf = KFold(n_splits=crossval_folds, shuffle=True, random_state=64)
 
-    logger.log_training_loss(1, 0.5)  # Test logger
+    logger.log_training_loss(1, 1, 0.5)  # Test logger
     print(len(dataset))  # Test dataset
     print(device)  # Test device
 
