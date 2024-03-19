@@ -7,6 +7,7 @@ from torchvision import transforms
 
 
 class Fruits(Dataset):
+    """PyTorch Dataset for loading Fruits images."""
     def __init__(self, file, path="./"):
         self.df = pd.read_csv(path + file)
         self.path = path
