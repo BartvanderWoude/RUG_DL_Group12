@@ -3,7 +3,6 @@ import torch
 
 
 class Logger:
-    """Pipeline for writing logs to files as well as saving models."""
     def __init__(self):
         self.logs_path = "output/logs/"
         self.models_path = "output/models/"
@@ -20,10 +19,9 @@ class Logger:
         self.validation = open(self.logs_path + "validation_loss.csv", "w")
         self.validation.write("fold,epoch,loss\n")
 
-    def save_model(self, model: torch.nn.Module, fold, epoch):
-        torch.save(model.state_dict(), "%smodel-f%s-e%s.pth" % (self.models_path,
-                                                                str(fold),
-                                                                str(epoch)))
+    def save_model(self, model: torch.nn.Module, fold):
+        torch.save(model.state_dict(), "%smodel_f%s.pth" % (self.models_path,
+                                                            str(fold),))
 
     def log_training_loss(self, fold, epoch, loss):
         if self.training.closed:

@@ -1,4 +1,7 @@
-# Source: pytorch-diffusion by awjuliani (https://github.com/awjuliani/pytorch-diffusion/tree/master)
+# Source: pytorch-diffusion by awjuliani
+# (https://github.com/awjuliani/pytorch-diffusion/tree/master)
+# Source: U-Net code adapted by milesial
+# (https://github.com/milesial/Pytorch-UNet)
 
 import torch
 import torch.nn as nn
@@ -38,9 +41,6 @@ class SAWrapper(nn.Module):
         x = self.sa(x)
         x = x.swapaxes(2, 1).view(-1, self.h_size, self.num_s, self.num_s)
         return x
-
-
-# U-Net code adapted from: https://github.com/milesial/Pytorch-UNet
 
 
 class DoubleConv(nn.Module):
