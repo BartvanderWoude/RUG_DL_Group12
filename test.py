@@ -8,8 +8,8 @@ import torchvision.utils as vutils
 import torchvision.transforms as transforms
 
 
-def test():
-    dataset = ds.Fruits("utils/test_fruits.csv")
+def test(file="utils/test_fruits.csv"):
+    dataset = ds.Fruits(file)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger = lg.Logger(testing=True)
 
@@ -23,7 +23,7 @@ def test():
         ts.test_diffusion(fold, model, dataloader, logger, device)
 
 
-def generate_reconstructions():
+def generate_reconstructions(file="utils/test_fruits.csv"):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = md.DiffusionUNet(in_size=100, t_range=1000, img_depth=3, device=device).to(device)
     model.load_state_dict(torch.load("output/models/model_f0.pth"))
@@ -112,4 +112,10 @@ def generate():
 
 
 if __name__ == '__main__':
+    generate_reconstructions()
+    # generate_reconstructions(file="utils/dummy_fruits.csv")
+
     generate()
+
+    test()
+    # test(file="utils/dummy_fruits.csv")

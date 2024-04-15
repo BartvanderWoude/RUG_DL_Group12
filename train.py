@@ -35,5 +35,5 @@ def train(file="utils/train_fruits.csv"):
 
 
 if __name__ == "__main__":
-    # train(file="utils/dummy_train_fruits.csv")
     train()
+    # train(file="utils/dummy_fruits.csv")
