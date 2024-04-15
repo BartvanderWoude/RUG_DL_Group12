@@ -17,7 +17,8 @@ Testing all 5 trained models on the fruits test set can be done using:
 ```
 python test.py
 ```
-If any visitors simply want to test functionality, there is a dummy dataset to use. The dummy dataset can be used by uncommenting relevant
+If any visitors simply want to test functionality, there is a dummy dataset to use. The dummy dataset is a smaller set of images from Fruits-360.
+Fruits-360 still needs to be downloaded and extracted. The dummy dataset can be used by uncommenting relevant
 commands at the bottom of `train.py` and `test.py`.
 ```
 train(file="utils/dummy_fruits.csv")
