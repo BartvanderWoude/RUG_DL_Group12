@@ -3,7 +3,7 @@ import torch
 
 
 class Logger:
-    def __init__(self):
+    def __init__(self, testing=False, model=""):
         self.logs_path = "output/logs/"
         self.models_path = "output/models/"
 
@@ -12,6 +12,11 @@ class Logger:
 
         if not os.path.exists(self.models_path):
             os.makedirs(self.models_path)
+
+        if testing:
+            self.testing = open(f"{self.logs_path}testing_loss.csv", "w")
+            self.testing.write("fold,batch,t,loss,ssim\n")
+            return
 
         self.training = open(self.logs_path + "training_loss.csv", "w")
         self.training.write("fold,epoch,loss\n")
@@ -38,6 +43,16 @@ class Logger:
         self.validation.write("%s,%s,%s\n" % (str(fold),
                                               str(epoch),
                                               str(loss)))
+
+    def log_testing_loss(self, fold, batch, t, loss, ssim):
+        if self.testing.closed:
+            raise ValueError("Logger is closed.")
+
+        self.testing.write("%s,%s,%s,%s,%s\n" % (str(fold),
+                                                 str(batch),
+                                                 str(t),
+                                                 str(loss),
+                                                 str(ssim)))
 
     def close(self):
         self.training.close()

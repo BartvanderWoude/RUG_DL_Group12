@@ -51,7 +51,7 @@ def train_diffusion(fold, model, optimizer, train_loader, val_loader, logger, de
         else:
             print("Validation loss did not decrease.")
             early_stopping += 1
-            if early_stopping == 3:
+            if early_stopping == 5:
                 print("Early stopping.")
                 break
 

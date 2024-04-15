@@ -11,7 +11,7 @@ from sklearn.model_selection import KFold
 def train(file="utils/train_fruits.csv"):
     batch_size = 64
     crossval_folds = 5
-    epochs = 2
+    epochs = 40
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(device)
