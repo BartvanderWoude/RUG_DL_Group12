@@ -31,8 +31,3 @@ the main `output/` folder contains images of acquired results.
 
 ## Workflow
 Create branch for a specific issue. Push to that branch freely. Merge with main through pull request.
-
-Unit tests can be run using:
-```
-pytest tests/*.py
-```
